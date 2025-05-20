@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Supplies Services - NIOR GROUP</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Division Page Specific Styles */
+        .division-hero {
+            background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        linear-gradient(135deg, #134E5E, #71B280);
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-text);
+            padding-top: 80px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--light-text);
+        }
+        
+        .product-section {
+            margin-top: 80px;
+        }
+        
+        .product-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .product-category {
+            padding: 10px 20px;
+            background-color: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .product-category.active, .product-category:hover {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .product-specs {
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        
+        .product-specs span {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+        
+        .product-specs strong {
+            color: var(--primary-color);
+        }
+        
+        .product-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        .product-inquiry {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+        
+        .testimonials {
+            margin-top: 80px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+        
+        .testimonial-card:before {
+            content: '\201C';
+            font-size: 5rem;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            color: var(--primary-color);
+            opacity: 0.3;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .client-info img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .client-name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .client-role {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+        
+        .process-section {
+            margin-top: 80px;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 auto 20px;
+        }
+        
+        .process-step h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .cta-section {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 80px 0;
+            margin-top: 80px;
+        }
+        
+        .cta-section h2 {
+            color: var(--light-text);
+            margin-bottom: 30px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .product-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .product-category {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <div class="nior-logo">
+                        <div class="nior-logo-mark"></div>
+                    </div>
+                    <div class="logo-text">
+                        <h1>NIOR GROUP</h1>
+                        <p class="tagline">Redefining Excellence Across Industries</p>
+                    </div>
+                </a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#about">About Us</a></li>
+                    <li><a href="../index.html#services" class="active">Our Divisions</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="division-hero">
+        <div class="container">
+            <h1>Food Supplies Services</h1>
+            <p>Premium Food Materials for Institutional & Commercial Kitchens</p>
+        </div>
+    </section>
+
+    <!-- Service Overview -->
+    <section class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Food Supplies Services</h2>
+                <p>Quality Ingredients for Exceptional Meals</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>NIOR GROUP's Food Supplies Services division is a trusted provider of high-quality food materials and ingredients, specializing in bulk supply to industrial kitchens, hotels, restaurants, and government institutions. We leverage our extensive sourcing network and quality control expertise to deliver the finest ingredients that meet our clients' exacting standards.</p>
+                    <p>With our commitment to quality, reliability, and competitive pricing, we have established ourselves as a preferred supplier for many leading establishments in Kuwait and the surrounding regions. Our comprehensive range of products, efficient delivery systems, and exceptional customer service ensure that our clients receive the ingredients they need, when they need them.</p>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-box-open"></i>
+                    <h3>Bulk Supply</h3>
+                    <p>Specialized in large volume orders for commercial kitchens, hotels, and institutional catering operations.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Fresh Produce</h3>
+                    <p>Supply of high-quality fruits and vegetables sourced from trusted farms with strict quality control.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-drumstick-bite"></i>
+                    <h3>Meat & Poultry</h3>
+                    <p>Premium cuts of meat and poultry products with proper handling and cold storage throughout the supply chain.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-fish"></i>
+                    <h3>Seafood</h3>
+                    <p>Fresh and frozen seafood options sourced from sustainable fisheries with guaranteed freshness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="product-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Product Range</h2>
+                <p>Premium Food Products for Every Need</p>
+            </div>
+            <div class="product-categories">
+                <div class="product-category active">All Products</div>
+                <div class="product-category">Dry Goods</div>
+                <div class="product-category">Frozen Foods</div>
+                <div class="product-category">Fresh Produce</div>
+                <div class="product-category">Beverages</div>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="#" alt="Premium Rice">
+                    </div>
+                    <div class="product-content">
+                        <h3>Premium Basmati Rice</h3>
+                        <p>High-quality, aromatic basmati rice perfect for institutional kitchens and restaurants.</p>
+                        <div class="product-specs">
+                            <span><strong>Origin:</strong> India/Pakistan</span>
+                            <span><strong>Packaging:</strong> 25kg / 50kg bags</span>
+                            <span><strong>Min. Order:</strong> 500kg</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">Contact for pricing</div>
+                            <div class="product-inquiry"><a href="../index.html#contact">Inquire Now</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="#" alt="Cooking Oil">
+                    </div>
+                    <div class="product-content">
+                        <h3>Refined Cooking Oil</h3>
+                        <p>High-grade cooking oils including vegetable, olive, and specialty oils for commercial use.</p>
+                        <div class="product-specs">
+                            <span><strong>Types:</strong> Vegetable, Sunflower, Olive</span>
+                            <span><strong>Packaging:</strong> 5L / 10L / 20L</span>
+                            <span><strong>Min. Order:</strong> 100L</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">Contact for pricing</div>
+                            <div class="product-inquiry"><a href="../index.html#contact">Inquire Now</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="#" alt="Frozen Chicken">
+                    </div>
+                    <div class="product-content">
+                        <h3>Frozen Chicken Products</h3>
+                        <p>Premium quality frozen chicken pieces, whole chickens, and processed chicken products.</p>
+                        <div class="product-specs">
+                            <span><strong>Varieties:</strong> Whole, Breast, Thigh, Wings</span>
+                            <span><strong>Packaging:</strong> 10kg / 20kg boxes</span>
+                            <span><strong>Storage:</strong> -18°C</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">Contact for pricing</div>
+                            <div class="product-inquiry"><a href="../index.html#contact">Inquire Now</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="#" alt="Fresh Vegetables">
+                    </div>
+                    <div class="product-content">
+                        <h3>Seasonal Vegetables</h3>
+                        <p>Fresh, high-quality seasonal vegetables sourced from trusted farms and suppliers.</p>
+                        <div class="product-specs">
+                            <span><strong>Available:</strong> Year-round selection</span>
+                            <span><strong>Packaging:</strong> 5kg / 10kg crates</span>
+                            <span><strong>Delivery:</strong> Daily/Weekly schedules</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">Seasonal pricing</div>
+                            <div class="product-inquiry"><a href="../index.html#contact">Inquire Now</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Supply Process</h2>
+                <p>Efficient and Reliable Food Supply Chain</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Sourcing</h3>
+                    <p>We carefully select suppliers who meet our strict quality standards, ensuring the best products.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Quality Control</h3>
+                    <p>Rigorous testing and inspection are conducted to maintain the highest quality standards.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Storage</h3>
+                    <p>Products are stored in temperature-controlled facilities to maintain freshness and quality.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Delivery</h3>
+                    <p>Our efficient logistics ensure timely delivery to meet your operational needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Client Testimonials</h2>
+                <p>What Our Clients Say About Us</p>
+            </div>
+            <div class="testimonial-card">
+                <p>"NIOR GROUP has been our primary food supplier for our hotel chain for the past four years. Their consistent quality, reliable delivery, and competitive pricing have made them an invaluable partner in our operations. Their range of products means we can source almost everything we need from one supplier."</p>
+                <div class="client-info">
+                    <img src="#" alt="Client">
+                    <div>
+                        <div class="client-name">Chef Hassan Al-Majid</div>
+                        <div class="client-role">Executive Chef, Luxury Hotels Group</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"As the procurement manager for a large educational institution, I've worked with many food suppliers over the years. NIOR GROUP stands out for their professionalism, quality control, and flexibility. They've consistently accommodated our special requirements and helped us maintain our budget without compromising quality."</p>
+                <div class="client-info">
+                    <img src="#" alt="Client">
+                    <div>
+                        <div class="client-name">Laila Al-Khamis</div>
+                        <div class="client-role">Procurement Manager, Kuwait Educational Institute</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Elevate Your Kitchen Supplies?</h2>
+            <p>Contact our team today to discuss your food supply needs and request a custom quote.</p>
+            <div class="cta-buttons">
+                <a href="../index.html#contact" class="btn btn-secondary">Contact Us</a>
+                <a href="#" class="btn btn-secondary">Download Product Catalog</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <div class="footer-nior-logo">
+                            <div class="nior-logo-mark"></div>
+                        </div>
+                        <div>
+                            <h3>NIOR GROUP</h3>
+                            <p>Redefining Excellence Across Industries</p>
+                        </div>
+                    </div>
+                    <p>A dynamic and diversified conglomerate delivering exceptional services across multiple industries with a commitment to excellence, integrity, and customer satisfaction.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#about">About Us</a></li>
+                        <li><a href="../index.html#services">Our Divisions</a></li>
+                        <li><a href="../index.html#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h3>Our Divisions</h3>
+                    <ul>
+                        <li><a href="catering.html">Catering Services</a></li>
+                        <li><a href="accommodation.html">Accommodation Services</a></li>
+                        <li><a href="food-supplies.html">Food Supplies Services</a></li>
+                        <li><a href="life-support.html">Life Support Services</a></li>
+                        <li><a href="logistics.html">Logistics Services</a></li>
+                        <li><a href="clothing.html">Clothing Services</a></li>
+                        <li><a href="consultancy.html">Consultancy Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Stay updated with our latest news and offers.</p>
+                    <form>
+                        <input type="email" placeholder="Your Email Address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 NIOR GROUP. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
